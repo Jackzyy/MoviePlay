@@ -22,12 +22,16 @@
             </div>
             <div class="movie-list">
                 <p>剧集</p>
-                <div class="list">
-                    <div v-for="item in movieInfo.movieList" :key="item.id">
-                        <div class="episode" @click="goPlay(item.movieUrl)">
-                            {{item.movieTitle}}
-                        </div>
-                    </div>
+                <div>
+                    <van-tabs type='card' color='#FE9B71'>
+                        <van-tab v-for="index in movieInfo.playSource" :title="index.title" :key='index.id'>
+                            <div class="list" v-for="item in index.movieList" :key="item.id">
+                                <div class="episode" @click="goPlay(item.movieUrl)">
+                                    {{item.movieTitle}}
+                                </div>
+                            </div>
+                        </van-tab>
+                    </van-tabs>
                 </div>
                 
             </div>
@@ -52,6 +56,7 @@
                 this.isShow = true
                 this.$axios.get('/detail',this.url).then(res =>{
                     if(res.code == 200){
+                        console.log(res.data.movieInfo);
                         this.movieInfo = res.data.movieInfo
                         this.isShow = false
                     }
@@ -127,9 +132,14 @@
                 padding-left: 8px;
                 border-left: 8px solid rgb(106, 243, 168);
             }
+            /deep/ .van-tab__pane{
+                    width: 6rem;
+                    display: flex;
+                    flex-flow: row wrap;
+                    margin: auto;
+                    margin-top: 10px;
+                }
             .list{
-                display: flex;
-                flex-flow: row wrap;
                 .episode{
                     width: 1.3rem;
                     padding: 5px 0;

@@ -69,15 +69,11 @@
       getHome(){
         this.isShow = true
         this.$axios.get('/home').then(res =>{
-          this.homeMovie = res.data
+          this.homeMovie = res.data.arr,
+          this.broadcast = res.data.Broadcast
           this.isShow = false
         })
         
-      },
-      getBroadcast(){
-        this.$axios.get('/broadcast').then(res =>{
-          this.broadcast = res.data
-        })
       },
 
       goMore(path){
@@ -96,7 +92,6 @@
       }
     },
     created(){
-      this.getBroadcast()
       this.getHome()
     }
   }
