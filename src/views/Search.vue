@@ -1,7 +1,7 @@
 <template>
     <div class="search">
         <div class="load" v-if="isShow"><van-loading color="#7D7D7D" /></div>
-        <div v-else>
+        <div class="offset" v-else>
             <van-list
                 v-model="loading"
                 :finished="finished"
@@ -73,7 +73,10 @@
                         if(res.data == ''){
                             this.$toast('没有相关数据');
                         }else{
-                           this.searchData = res.data 
+                           this.searchData = res.data
+                           if(res.data.length < 4){
+                               this.finished = true
+                           }
                         }
                     }
                 })
