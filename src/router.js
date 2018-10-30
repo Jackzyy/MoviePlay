@@ -85,7 +85,23 @@ export default new Router({
             arrow:true
           },
           component: () => import('@/views/Search')
-        }
+        },
+        {
+          path:'/user',
+          name:'用户中心',
+          meta:{
+            arrow:true
+          },
+          component: () => import('@/views/User')
+        },
+        {
+          path:'/login',
+          name:'登录',
+          meta:{
+            arrow:true
+          },
+          component: () => import('@/views/Login')
+        },
       ]
     }
   ]

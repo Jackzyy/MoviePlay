@@ -2,7 +2,8 @@
     <div class="head">
         <van-nav-bar title="影视"
             :left-arrow = 'this.arrow'
-            @click-left="onClickLeft">
+            @click-left="onClickLeft"
+            @click-right="onClickRight">
             <van-icon name="contact" slot="right" />
         </van-nav-bar>
     </div>
@@ -18,6 +19,9 @@
         methods: {
             onClickLeft() {
                 this.$router.go(-1)
+            },
+            onClickRight() {
+                this.$router.push('/user')
             }
         },
         watch:{

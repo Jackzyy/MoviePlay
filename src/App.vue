@@ -6,12 +6,12 @@
 
 <script>
   export default {
-    mounted(){
-      this.$toast.loading({
-          mask: true,
-          message: 'Loading...'
-      });
-    }
+  //   mounted(){
+  //     this.$toast.loading({
+  //         mask: true,
+  //         message: 'Loading...'
+  //     });
+  //   }
   }
 </script>
 

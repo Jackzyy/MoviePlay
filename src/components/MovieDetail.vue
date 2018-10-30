@@ -7,13 +7,20 @@
                     <img :src="movieInfo.movieImg" alt="">
                 </div>
                 <div class="info">
-                    <p  class="van-ellipsis movie-name">{{movieInfo.movieTitle}}</p>
-                    <p  class="movie-bot">{{movieInfo.movieState}}</p>
-                    <p  class="van-ellipsis movie-bot">{{movieInfo.movieActor}}</p>
-                    <p  class="movie-bot">{{movieInfo.movieType}}</p>
-                    <p  class="movie-bot">{{movieInfo.movieDirector}}</p>
-                    <p  class="movie-bot">{{movieInfo.movieArea}}</p>
-                    <p  class="movie-bot">时间：{{movieInfo.movieUptime}}</p>
+                    <div>
+                        <p  class="van-ellipsis movie-name">{{movieInfo.movieTitle}}</p>
+                        <p  class="movie-bot">{{movieInfo.movieState}}</p>
+                        <p  class="van-ellipsis movie-bot">{{movieInfo.movieActor}}</p>
+                        <p  class="movie-bot">{{movieInfo.movieType}}</p>
+                        <p  class="movie-bot">{{movieInfo.movieDirector}}</p>
+                        <p  class="movie-bot">{{movieInfo.movieArea}}</p>
+                        <p  class="movie-bot">时间：{{movieInfo.movieUptime}}</p>
+                    </div>
+                    <div class="bot-btn">
+                        <div class="coll-btn" @click="goPlay(movieInfo.playSource[0].movieList[0].movieUrl)">立即播放</div>
+                        <div class="coll-btn" v-if="!isCollect" @click="goCollect">可收藏</div>
+                        <div class="coll-btn-one" v-else @click="cancelCollect">已收藏</div>
+                    </div>
                 </div>
             </div>
             <div class="summary">
@@ -33,10 +40,8 @@
                         </van-tab>
                     </van-tabs>
                 </div>
-                
             </div>
         </div>
-       
     </div>
 </template>
 
@@ -48,7 +53,9 @@
                     url:''
                 },
                 movieInfo: '',
-                isShow:false
+                isShow:false,
+                collectUrl:'',
+                isCollect:false
             }
         },
         methods: {
@@ -56,13 +63,23 @@
                 this.isShow = true
                 this.$axios.get('/detail',this.url).then(res =>{
                     if(res.code == 200){
-                        console.log(res.data.movieInfo);
-                        this.movieInfo = res.data.movieInfo
                         this.isShow = false
+                        this.movieInfo = res.data.movieInfo
+                        this.collectUrl = res.Url
                     }
                 })
             },
+            getCollect(){
+                if(this.$store.state.userInfo != ''){
+                    this.$axios.get('/iscollections',{url:this.$route.query.url}).then(res =>{
+                        if(res.code == 200){
+                            this.isCollect = res.isCollect
+                        }
+                    })
+                }
+            },
             goPlay(url){
+                // console.log(url);
                 this.$router.push({
                     path:'/play',
                     query:{
@@ -70,16 +87,54 @@
                         url
                     }
                 })
+            },
+            goCollect(){
+                this.isCollect = !this.isCollect
+                this.$axios.post('/collections',{url:this.collectUrl}).then(res =>{
+                    // console.log(res);
+                })
+            },
+            cancelCollect(){
+                this.isCollect = !this.isCollect
+                this.$axios.post('/cancelCollect',{url:this.collectUrl}).then(res =>{
+                    // console.log(res);
+                })
             }
         },
         created(){
             this.url.url = this.$route.query.url
             this.getDetail()
+            this.getCollect()
         }
     }
 </script>
 
 <style scoped lang='scss'>
+    .bot-btn{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    .coll-btn{
+        width: 40%;
+        padding: 6px;
+        font-size: 15px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #44BB00;
+        color: #fff;
+        border: 1px solid #44BB00;
+    }
+    .coll-btn-one{
+        width: 40%;
+        padding: 6px;
+        font-size: 15px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #fff;
+        color: #44BB00;
+        border: 1px solid #44BB00;
+    }
     .load{
         position: fixed;
         left: 46%;
@@ -95,7 +150,7 @@
             justify-content: space-between;
             .img{
                 width: 2.2rem;
-                height: 3.3rem;
+                height: 3.5rem;
                 img{
                     width: 100%;
                     height: 100%;
@@ -103,7 +158,9 @@
             }
             .info{
                 width: 3.5rem;
-                line-height: 3;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
                 .movie-name{
                     font-size: 16px;
                     margin-top: 0;

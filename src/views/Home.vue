@@ -82,9 +82,9 @@
       },
       onRefresh(){
         setTimeout(() => {
-          this.getBroadcast()
           this.$axios.get('/home').then(res =>{
-            this.homeMovie = res.data
+            this.homeMovie = res.data.arr,
+            this.broadcast = res.data.Broadcast
             this.isLoading = false
             this.$toast('数据更新成功')
           })
