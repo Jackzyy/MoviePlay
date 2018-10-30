@@ -16,12 +16,17 @@
                 placeholder="请输入密码"
                 required
             />
-
+            
+            <van-field
+                v-model="userInfo.desc"
+                label="签名"
+                placeholder="请输入签名"
+            />
         </van-cell-group>
         <van-button
             :loading='this.isDone'
             type="primary"
-            text="登录"
+            text="注册"
             @click="goLogin"/>
     </div>
 </template>
@@ -32,7 +37,8 @@
             return {
                 userInfo: {
                     username:'',
-                    password:''
+                    password:'',
+                    desc:''
                 },
                 isDone:false
             }
@@ -40,14 +46,15 @@
         methods: {
             goLogin(){
                 this.isDone = true
-                this.$axios.post('/login',this.userInfo).then(res =>{
+                this.$axios.post('/register',this.userInfo).then(res =>{
+                    this.isDone = false
                     if(res.code == 200){
-                        this.$store.commit('CHANGE_USERINFO',res.data)
-                        this.isDone = false
-                        this.$toast.success('登陆成功');
+                        this.$toast.success('注册成功');
                         setTimeout(() => {
-                            this.$router.push('/index')
+                            this.$router.push('/login')
                         }, 500);
+                    }else{
+                        this.$toast.fail(res.msg);
                     }
                 })
             }
@@ -66,6 +73,5 @@
         padding: 0 2rem;
         display: flex;
         margin:30px auto;
-        border-radius: 5px;
     }
 </style>

@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 var instance = axios.create({
-    baseURL: '/api',
-    // baseURL: '/',
+    // baseURL: '/api',
+    baseURL: '/',
     timeout: 15000
 });
 

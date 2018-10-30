@@ -2,10 +2,13 @@
     <div>
         <div v-if="isLogin">
             <div class="userInfo">
+                <div class="login-out" >
+                    <p @click="loginOut">登出</p>
+                </div>
                 <div class="box">
-                    <p class="name">{{ this.userInfo.username }}</p>
+                    <span class="name">{{ this.userInfo.username }}，Welcome ~</span>
                     <div class="bot">
-                        <p class="desc">描述：{{ this.userInfo.desc }}</p>
+                        <span class="desc">描述：{{ this.userInfo.desc }}</span>
                         <div class="img">
                             <img src="" alt="">
                         </div>
@@ -42,12 +45,10 @@
             </div>
             <div class="go-login">
                 <div class="box" @click="goLogin">
-                    点击登陆
+                    登陆
                 </div>
-            </div>
-            <div class="go-login">
                 <div class="box" @click="goReg">
-                    点击注册
+                    注册
                 </div>
             </div>
         </div>
@@ -93,7 +94,7 @@
                 this.$router.push('/login')
             },
             goReg(){
-
+                this.$router.push('/register')
             },
             goDetail(url){
                 this.$router.push({
@@ -103,6 +104,11 @@
                     }
                 })
             },
+            loginOut(){
+                sessionStorage.removeItem('vuex')
+                this.$store.commit('REMOVE_USERINFO','')
+                this.isLogin = false
+            }
         },
         computed:mapState([
             'userInfo'
@@ -117,6 +123,17 @@
 </script>
 
 <style scoped lang='scss'>
+    .login-out{
+        display: flex;
+        justify-content: flex-end;
+        p{
+            font-size: 13px;
+            padding: 10px 0.4rem;
+            margin: 0;
+            text-align: center;
+            border-bottom: 1px solid #fff;
+        }
+    }
     .no-collect{
         font-size: 12px;
         color: #ccc;
@@ -124,7 +141,8 @@
         margin-top: 1rem;
     }
     .userInfo{
-        display: flex;
+        margin: 0;
+        padding: 0;
         background-color: #A2B3BA;
         color: #fff;
         border-radius: 5px;
@@ -132,15 +150,19 @@
             width: 6rem;
             height: 3rem;
             margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
             .name{
                 font-size: 26px;
+                margin-top: 10px;
             }
             .bot{
                 display: flex;
                 justify-content: space-between;
-                align-items: flex-start;
+                align-items: flex-end;
                 .desc{
-                    font-size: 16px;
+                    font-size: 13px;
                 }
                 .img{
                     width: 1rem;
@@ -170,13 +192,13 @@
     }
     .go-login{
         text-align: center;
+        margin-top: 1rem;
         .box{
-            margin: auto;
-            margin-top: 1rem;
-            width: 2rem;
-            padding: 10px 0;
+            margin:10px auto;
+            width: 5rem;
+            padding: 7px 0;
             background-color: #ccc;
-            border-radius: 5px;
+            border-radius: 50px;
         }
     }
     .box-top{

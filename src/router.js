@@ -102,6 +102,14 @@ export default new Router({
           },
           component: () => import('@/views/Login')
         },
+        {
+          path:'/register',
+          name:'注册',
+          meta:{
+            arrow:true
+          },
+          component: () => import('@/views/Register')
+        },
       ]
     }
   ]

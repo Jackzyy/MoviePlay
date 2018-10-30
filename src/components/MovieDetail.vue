@@ -33,7 +33,7 @@
                     <van-tabs type='card' color='#FE9B71'>
                         <van-tab v-for="index in movieInfo.playSource" :title="index.title" :key='index.id'>
                             <div class="list" v-for="item in index.movieList" :key="item.id">
-                                <div class="episode" @click="goPlay(item.movieUrl)">
+                                <div class="van-ellipsis episode" @click="goPlay(item.movieUrl)">
                                     {{item.movieTitle}}
                                 </div>
                             </div>
@@ -89,10 +89,15 @@
                 })
             },
             goCollect(){
-                this.isCollect = !this.isCollect
-                this.$axios.post('/collections',{url:this.collectUrl}).then(res =>{
-                    // console.log(res);
-                })
+                if(this.$store.state.userInfo != ''){
+                    this.isCollect = !this.isCollect
+                    this.$axios.post('/collections',{url:this.collectUrl}).then(res =>{
+                        // console.log(res);
+                    })
+                }else{
+                    this.$toast.fail('请先登录哦');
+                }
+                
             },
             cancelCollect(){
                 this.isCollect = !this.isCollect
@@ -117,7 +122,7 @@
     }
     .coll-btn{
         width: 40%;
-        padding: 6px;
+        padding: 6px 6px;
         font-size: 15px;
         border-radius: 5px;
         text-align: center;

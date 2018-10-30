@@ -11,6 +11,9 @@ export default new Vuex.Store({
   mutations: {
     'CHANGE_USERINFO'(state,payload){
       state.userInfo = payload
+    },
+    'REMOVE_USERINFO' (state, payload){
+      state.userInfo = payload
     }
   },
   actions: {
