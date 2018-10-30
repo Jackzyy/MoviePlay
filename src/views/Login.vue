@@ -46,7 +46,7 @@
                         this.isDone = false
                         this.$toast.success('登陆成功');
                         setTimeout(() => {
-                            this.$router.push('/index')
+                            this.$router.replace('/user')
                         }, 500);
                     }
                 })

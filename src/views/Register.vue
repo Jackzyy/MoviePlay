@@ -51,7 +51,7 @@
                     if(res.code == 200){
                         this.$toast.success('注册成功');
                         setTimeout(() => {
-                            this.$router.push('/login')
+                            this.$router.replace('/login')
                         }, 500);
                     }else{
                         this.$toast.fail(res.msg);

@@ -87,14 +87,14 @@
                     }
                 })
                 if(this.collections == []){
-                            this.noCollect = true
-                        }
+                    this.noCollect = true
+                }
             },
             goLogin(){
-                this.$router.push('/login')
+                this.$router.replace('/login')
             },
             goReg(){
-                this.$router.push('/register')
+                this.$router.replace('/register')
             },
             goDetail(url){
                 this.$router.push({
