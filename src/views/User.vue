@@ -105,7 +105,7 @@
                 })
             },
             loginOut(){
-                sessionStorage.removeItem('vuex')
+                localStorage.removeItem('vuex')
                 this.$store.commit('REMOVE_USERINFO','')
                 this.isLogin = false
             }
@@ -173,11 +173,6 @@
                 }
             }
         }
-    }
-    .load{
-        position: absolute;
-        top: 3rem;
-        left: 46%;
     }
     .collections{
         width: 6rem;

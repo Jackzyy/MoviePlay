@@ -99,11 +99,6 @@
 </script>
 
 <style scoped lang='scss'>
-    .load{
-        position: fixed;
-        left: 46%;
-        top: 40%;
-    }
     .search{
         width: 6rem;
         margin:2px auto;

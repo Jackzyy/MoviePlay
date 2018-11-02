@@ -1,5 +1,11 @@
 <template>
     <div class="movie">
+        <div class="kind">
+            <span>排序：</span>
+            <div class="coll-btn" @click="goKind('addtime')">最新</div>
+            <div class="coll-btn" @click="goKind('hits')">最热</div>
+            <div class="coll-btn" @click="goKind('gold')">评分</div>
+        </div>
         <div class="load" v-if="isShow"><van-loading color="#7D7D7D" /></div>
         <div v-else>
             <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
@@ -33,6 +39,11 @@
     export default {
         data() {
             return {
+                kind:[
+                    '最新',
+                    '最热',
+                    '评分'
+                ],
                 isLoading:false,
                 isShow:false,
                 loading: false,
@@ -58,7 +69,6 @@
                                 this.finished = true;
                             }
                         }
-                        
                     })
                 }, 500);
             },
@@ -86,6 +96,11 @@
                         this.$toast('数据更新成功')
                     })
                 }, 500);
+            },
+            goKind(kind){
+                this.movieConfig.kind = kind
+                this.movieConfig.id = 1
+                this.getMovie()
             }
         },
         watch:{
@@ -103,10 +118,37 @@
 </script>
 
 <style scoped lang='scss'>
-    .load{
-        position: fixed;
-        left: 46%;
-        top: 40%;
+    .kind{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        span{
+            font-size: 13px;
+            border-left: 6px solid #44BB00;
+            padding-left: 8px;
+        }
+    }
+    .coll-btn:hover{
+        padding: 6px 10px;
+        margin-left: 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #44BB00;
+        color: #fff;
+        border: 1px solid #44BB00;
+    }
+    .coll-btn{
+        padding: 6px 10px;
+        margin-left: 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #fff;
+        color: #44BB00;
+        border: 1px solid #44BB00;
     }
     .movie{
         width: 6rem;

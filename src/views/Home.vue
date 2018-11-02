@@ -98,11 +98,6 @@
 </script>
 
 <style scoped lang='scss'>
-  .load{
-    position: fixed;
-    top: 40%;
-    left: 46%;
-  }
   .swipe{
     width: 100%;
   }

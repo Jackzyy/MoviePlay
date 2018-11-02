@@ -45,11 +45,6 @@
 </script>
 
 <style scoped lang='scss'>
-    .load{
-        position: fixed;
-        left: 46%;
-        top: 40%;
-    }
     .play{
         width: 6.2rem;
         margin: auto;

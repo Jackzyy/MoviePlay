@@ -130,21 +130,6 @@
         color: #fff;
         border: 1px solid #44BB00;
     }
-    .coll-btn-one{
-        width: 40%;
-        padding: 6px;
-        font-size: 15px;
-        border-radius: 5px;
-        text-align: center;
-        background-color: #fff;
-        color: #44BB00;
-        border: 1px solid #44BB00;
-    }
-    .load{
-        position: fixed;
-        left: 46%;
-        top: 40%;
-    }
     .detail{
         width: 6rem;
         margin:2px auto;

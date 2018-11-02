@@ -1,8 +1,6 @@
 import axios from 'axios'
 
 var instance = axios.create({
-    // baseURL: '/api',
-    // baseURL: '/',
     baseURL:process.env.NODE_ENV === 'development' ? '/api' : '/',
     timeout: 15000
 });

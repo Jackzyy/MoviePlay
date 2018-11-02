@@ -39,17 +39,23 @@
         },
         methods: {
             goLogin(){
-                this.isDone = true
-                this.$axios.post('/login',this.userInfo).then(res =>{
-                    if(res.code == 200){
-                        this.$store.commit('CHANGE_USERINFO',res.data)
-                        this.isDone = false
-                        this.$toast.success('登陆成功');
-                        setTimeout(() => {
-                            this.$router.replace('/user')
-                        }, 500);
-                    }
-                })
+                if(this.userInfo.username == ''){
+                    this.$toast.fail('请输入用户名');
+                }else if(this.userInfo.password == ''){
+                    this.$toast.fail('请输入密码');
+                }else{
+                    this.isDone = true
+                    this.$axios.post('/login',this.userInfo).then(res =>{
+                        if(res.code == 200){
+                            this.$store.commit('CHANGE_USERINFO',res.data)
+                            this.isDone = false
+                            this.$toast.success('登陆成功');
+                            setTimeout(() => {
+                                this.$router.replace('/user')
+                            }, 500);
+                        }
+                    })
+                }
             }
             
         },
