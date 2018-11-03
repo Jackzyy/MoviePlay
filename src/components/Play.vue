@@ -49,9 +49,13 @@
         width: 6.2rem;
         margin: auto;
         margin-top: 0.1rem;
+        position: relative;
+        height: 90vh;
+        overflow: hidden;
     }
     .player-box{
         height: 3.5rem;
+        // height: 100%;
         border-radius: 5px;
         overflow: hidden;
     }
@@ -66,8 +70,8 @@
             font-size: 12px;
             color: #7d7d7d;
             text-align: center;
-            position: fixed;
-            bottom: 5px;
+            position: absolute;
+            bottom: 0;
         }
     }
 </style>

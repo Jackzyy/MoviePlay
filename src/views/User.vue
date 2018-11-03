@@ -84,6 +84,9 @@
                         });
                         this.isShow = false
                         
+                    }else if(res.code == 201){
+                        this.loginOut()
+                        this.isShow = false
                     }
                 })
                 if(this.collections == []){
@@ -123,6 +126,12 @@
 </script>
 
 <style scoped lang='scss'>
+    .load{
+        position: fixed;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%, -50%);
+    }
     .login-out{
         display: flex;
         justify-content: flex-end;

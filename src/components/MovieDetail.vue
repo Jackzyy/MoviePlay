@@ -9,6 +9,8 @@
                 <div class="info">
                     <div>
                         <p  class="van-ellipsis movie-name">{{movieInfo.movieTitle}}</p>
+                    </div>
+                    <div class="top">
                         <p  class="movie-bot">{{movieInfo.movieState}}</p>
                         <p  class="van-ellipsis movie-bot">{{movieInfo.movieActor}}</p>
                         <p  class="movie-bot">{{movieInfo.movieType}}</p>
@@ -118,6 +120,7 @@
     .bot-btn{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin-top: 10px;
     }
     .coll-btn{
@@ -128,6 +131,16 @@
         text-align: center;
         background-color: #44BB00;
         color: #fff;
+        border: 1px solid #44BB00;
+    }
+    .coll-btn-one{
+        width: 40%;
+        padding: 6px 6px;
+        font-size: 15px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #fff;
+        color: #44BB00;
         border: 1px solid #44BB00;
     }
     .detail{
@@ -148,6 +161,7 @@
             }
             .info{
                 width: 3.5rem;
+                height: 3.5rem;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -159,7 +173,9 @@
                     font-size: 12px;
                     line-height: 1;
                 }
-                
+                .top{
+                    margin-top: -10px;
+                }
             }
         }
         .summary{
