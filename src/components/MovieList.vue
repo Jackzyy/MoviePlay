@@ -2,9 +2,9 @@
     <div class="movie">
         <div class="kind">
             <span>排序：</span>
-            <div class="coll-btn" @click="goKind('addtime')">最新</div>
-            <div class="coll-btn" @click="goKind('hits')">最热</div>
-            <div class="coll-btn" @click="goKind('gold')">评分</div>
+            <div :class="addtime? 'coll-btn-selected':'coll-btn'" @click="goKind('addtime')">最新</div>
+            <div :class="hits? 'coll-btn-selected':'coll-btn'" @click="goKind('hits')">最热</div>
+            <div :class="gold? 'coll-btn-selected':'coll-btn'" @click="goKind('gold')">评分</div>
         </div>
         <div class="load" v-if="isShow"><van-loading color="#7D7D7D" /></div>
         <div v-else>
@@ -48,10 +48,14 @@
                 isShow:false,
                 loading: false,
                 finished: false,
+                //排序是否选中CSS控制
+                addtime:true,
+                hits:false,
+                gold:false,
                 movieConfig:{
                     type:'',
                     id:1,
-                    kind:'hits'
+                    kind:'addtime'
                 },
                 movies:[]
             }
@@ -75,6 +79,7 @@
             getMovie() {
                 this.isShow = true
                 this.$axios.get('/movie',this.movieConfig).then(res =>{
+                    this.isSelecte(res.urlInfo.kind)
                     this.movies = res.data
                     this.isShow = false
                 })
@@ -91,13 +96,30 @@
                 setTimeout(() => {
                     this.movieConfig.id = 1
                     this.$axios.get('/movie',this.movieConfig).then(res =>{
+                        this.isSelecte(res.urlInfo.kind)
                         this.movies = res.data
                         this.isLoading = false
                         this.$toast('数据更新成功')
                     })
                 }, 500);
             },
+            isSelecte(kind){
+                if(kind == 'addtime'){
+                    this.addtime = true
+                    this.hits = false
+                    this.gold = false
+                }else if(kind == 'hits'){
+                    this.addtime = false
+                    this.hits = true
+                    this.gold = false
+                }else if(kind == 'gold'){
+                    this.addtime = false
+                    this.hits = false
+                    this.gold = true
+                }
+            },
             goKind(kind){
+                this.isSelecte(kind)
                 this.movieConfig.kind = kind
                 this.movieConfig.id = 1
                 this.getMovie()
@@ -130,7 +152,7 @@
             padding-left: 8px;
         }
     }
-    .coll-btn:hover{
+    .coll-btn-selected{
         padding: 6px 10px;
         margin-left: 10px;
         font-size: 12px;

@@ -125,8 +125,8 @@
     }
     .coll-btn{
         width: 40%;
-        padding: 6px 6px;
-        font-size: 15px;
+        padding: 6px 5px;
+        font-size: 12px;
         border-radius: 5px;
         text-align: center;
         background-color: #44BB00;
@@ -135,8 +135,8 @@
     }
     .coll-btn-one{
         width: 40%;
-        padding: 6px 6px;
-        font-size: 15px;
+        padding: 6px 5px;
+        font-size: 12px;
         border-radius: 5px;
         text-align: center;
         background-color: #fff;
@@ -180,6 +180,7 @@
         }
         .summary{
             .summary-title{
+                width: 1rem;
                 font-size: 16px;
                 padding-left: 8px;
                 border-left: 8px solid rgb(106, 243, 168);
