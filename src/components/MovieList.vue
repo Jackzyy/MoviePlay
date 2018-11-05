@@ -14,7 +14,6 @@
                     :finished="finished"
                     @load="onLoad"
                     :offset='0'>
-
                     <div class="box-movie">
                         <div v-for="item in movies" :key="item.id">
                             <div class="movieInfo" @click="goDetail(item.movieUrl)">
@@ -193,7 +192,7 @@
                 height: 100%;
             }
             .score{
-                width: 0.5rem;
+                padding: 0 8px;
                 text-align: center;
                 border-radius: 5px;
                 font-size: 12px;
@@ -201,11 +200,12 @@
                 top: 1px;
                 right: 1px;
                 background-color: #94c8d7;
+                opacity: 0.9;
             }
             .clarity{
                 padding: 0 3px;
                 border-radius: 5px;
-                font-size: 12px;
+                font-size: 10px;
                 text-align: center;
                 background-color: #ccc;
                 position: absolute;

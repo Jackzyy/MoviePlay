@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="collections">
-                <span>收藏</span>
+                <p class="title">收藏</p>
                 <p class="no-collect" v-if="noCollect">还没有任何收藏哦~</p>
                 <div class="load" v-if="isShow"><van-loading color="#7D7D7D" /></div>
                 <div v-else v-for="item in collections" :key="item.id">
@@ -188,8 +188,8 @@
         margin: auto;
         margin-top: 10px;
         position: relative;
-        span{
-            font-size: 18px;
+        .title{
+            font-size: 16px;
             padding: 0 5px;
             border-left: 8px solid #A2B3BA;
         }
@@ -198,7 +198,8 @@
         text-align: center;
         margin-top: 1rem;
         .box{
-            margin:10px auto;
+            font-size: 16px;
+            margin: auto;
             width: 5rem;
             padding: 7px 0;
             background-color: #ccc;
@@ -209,7 +210,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 0.05rem;
+        margin-top: 5px;
         .img{
             width: 1.8rem;
             height: 2.5rem;
@@ -219,16 +220,15 @@
             }
         }
         .info{
-            width: 3.8rem;
+            width: 4rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             .movie-name{
-                font-size: 16px;
+                font-size: 15px;
             }
             .movie-bot{
                 font-size: 12px;
-                // line-height: 1;
             }
             
         }

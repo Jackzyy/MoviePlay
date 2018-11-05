@@ -11,6 +11,7 @@
     <div v-else>
       <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
         <van-swipe 
+          class="more"
           :autoplay="3000">
           <van-swipe-item v-for="(item, index) in broadcast" :key="index">
             <img @click="goDetail(item.url)" class="swipe" :src="item.img" alt="">
@@ -21,7 +22,7 @@
             <div class="box">
               <div class="title">
                 <p>{{ movies.title }}</p>
-                <van-icon @click="goMore(movies.path)" name="more-o" />
+                <van-icon class="more" @click="goMore(movies.path)" name="more-o" />
               </div>
               <div class="box-movie">
                 <div v-for="item in movies.movie" :key="item.id">
@@ -98,19 +99,23 @@
 </script>
 
 <style scoped lang='scss'>
+  .more{
+    font-size: 16px;
+  }
   .swipe{
     width: 100%;
   }
   .list{
-    width: 6rem;
-    margin: auto;
+    margin-top: -8px;
     .box{
+      padding: 0 0.2rem;
+      border-top: 10px solid #F2F2F2;
       .title{
         display: flex;
         align-items: center;
         justify-content: space-between;
         p{
-          font-size: 16px;
+          font-size: 15px;
           border-left: 8px solid rgb(106, 243, 168);
           padding-left: 8px;
         }
@@ -132,7 +137,8 @@
               }
             }
             .van-ellipsis{
-              font-size: 13px;
+              margin-top: 2px;
+              font-size: 12px;
             }
         }
       }
