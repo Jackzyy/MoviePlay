@@ -1,5 +1,6 @@
 <template>
     <div class="movie">
+        <!-- <img src="@/style/img/err.jpg" alt=""> -->
         <div class="kind">
             <span>排序：</span>
             <div :class="addtime? 'coll-btn-selected':'coll-btn'" @click="goKind('addtime')">最新</div>
@@ -18,7 +19,7 @@
                         <div v-for="item in movies" :key="item.id">
                             <div class="movieInfo" @click="goDetail(item.movieUrl)">
                                 <div class="img">
-                                    <img :src="item.movieImgUrl" alt="">
+                                    <img :src="item.movieImgUrl" @error="()=>item.movieImgUrl = require('@/style/img/err.jpg')" alt="">
                                     <span class="score">{{item.movieScore}}</span>
                                     <span class="clarity">{{ item.movieClarity }}</span>
                                 </div>

@@ -1,7 +1,6 @@
 <template>
     <div>
-        <van-tabs v-model="active" 
-            swipeable 
+        <van-tabs v-model="active"
             sticky 
             :swipe-threshold = 5
             @change="handleGo">
@@ -12,6 +11,7 @@
             <van-tab title="电视剧"></van-tab>
             <router-view/>
         </van-tabs>
+        
     </div>
 </template>
 

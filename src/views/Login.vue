@@ -1,28 +1,28 @@
 <template>
     <div class="login">
-        <van-cell-group>
-            <van-field
-                v-model="userInfo.username"
-                required
-                clearable
-                label="用户名"
-                placeholder="请输入用户名"
-            />
-
-            <van-field
-                v-model="userInfo.password"
-                type="password"
-                label="密码"
-                placeholder="请输入密码"
-                required
-            />
-
-        </van-cell-group>
-        <van-button
-            :loading='this.isDone'
-            type="primary"
-            text="登录"
-            @click="goLogin"/>
+        <div class="box">
+            <van-cell-group>
+                <van-field
+                    v-model="userInfo.username"
+                    required
+                    clearable
+                    label="用户名"
+                    placeholder="请输入用户名"
+                />
+                <van-field
+                    v-model="userInfo.password"
+                    type="password"
+                    label="密码"
+                    placeholder="请输入密码"
+                    required
+                />
+            </van-cell-group>
+            <van-button
+                :loading='this.isDone'
+                type="primary"
+                text="登录"
+                @click="goLogin"/>
+        </div>
     </div>
 </template>
 
@@ -65,8 +65,18 @@
 <style scoped lang='scss'>
     .login{
         width: 6rem;
+        height: 90vh;
         margin: auto;
-        margin-top: 3rem;
+        position: relative;
+    }
+    .box{
+        height: 200px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
     }
     /deep/ .van-button{
         padding: 0 2rem;

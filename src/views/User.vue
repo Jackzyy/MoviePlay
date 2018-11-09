@@ -22,7 +22,7 @@
                 <div v-else v-for="item in collections" :key="item.id">
                     <div class="box-top" @click="goDetail(item.url)">
                         <div class="img">
-                            <img :src="item.movieInfo.movieImg" alt="">
+                            <img :src="item.movieInfo.movieImg" @error="()=>item.movieInfo.movieImg = require('@/style/img/err.jpg')" alt="">
                         </div>
                         <div class="info">
                             <div>
@@ -57,6 +57,7 @@
 
 <script>
     import { mapState } from 'vuex'
+    import * as Cookies from 'js-cookie'
     export default {
         data() {
             return {
@@ -108,8 +109,8 @@
                 })
             },
             loginOut(){
-                localStorage.removeItem('vuex')
                 this.$store.commit('REMOVE_USERINFO','')
+                Cookies.remove('vuex');
                 this.isLogin = false
             }
         },
@@ -199,7 +200,7 @@
         margin-top: 1rem;
         .box{
             font-size: 16px;
-            margin: auto;
+            margin:10px auto;
             width: 5rem;
             padding: 7px 0;
             background-color: #ccc;

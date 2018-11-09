@@ -4,8 +4,11 @@
       <van-search
         v-model="value"
         placeholder="请输入搜索关键词"
+        show-action
         @search="onSearch"
-      />
+      >
+        <div slot="action" @click="onSearch">搜索</div>
+      </van-search>
     </form>
     <div class="load" v-if="isShow"><van-loading color="#7D7D7D" /></div>
     <div v-else>
@@ -28,7 +31,7 @@
                 <div v-for="item in movies.movie" :key="item.id">
                   <div class="movieInfo" @click="goDetail(item.movieUrl)">
                     <div class="img">
-                      <img :src="item.movieImg" alt="">
+                      <img :src="item.movieImg" @error="()=>item.movieImg = require('@/style/img/err.jpg')" alt="">
                     </div>
                     <div class="van-ellipsis">{{ item.movieName }}</div>
                   </div>
@@ -57,7 +60,11 @@
     },
     methods: {
       onSearch(){
-        this.$router.push(`/search/${this.value}`)
+        if(this.value == ''){
+          this.$toast('请输入关键词')
+        }else{
+          this.$router.push(`/search/${this.value}`)
+        }
       },
       goDetail(url){
         this.$router.push({

@@ -10,7 +10,7 @@
                 <div v-for="item in searchData" :key="item.id">
                     <div class="box-top" @click="goDetail(item.url)">
                         <div class="img">
-                            <img :src="item.img" alt="">
+                            <img :src="item.img" @error="()=>item.img = require('@/style/img/err.jpg')" alt="">
                         </div>
                         <div class="info">
                             <div>
@@ -106,7 +106,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 0.05rem;
+            margin-top: 8px;
             .img{
                 width: 1.8rem;
                 height: 2.5rem;
@@ -116,16 +116,16 @@
                 }
             }
             .info{
-                width: 3.8rem;
+                width: 4rem;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                font-size: 15px;
                 .movie-name{
-                    font-size: 16px;
+                    font-size: 13px;
                 }
                 .movie-bot{
-                    font-size: 12px;
-                    // line-height: 1;
+                    font-size: 11px;
                 }
                 
             }

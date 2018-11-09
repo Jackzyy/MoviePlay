@@ -4,7 +4,7 @@
         <div v-else>
             <div class="box-top">
                 <div class="img">
-                    <img :src="movieInfo.movieImg" alt="">
+                    <img :src="movieInfo.movieImg" @error="()=>movieInfo.movieImg = require('@/style/img/err.jpg')" alt="">
                 </div>
                 <div class="info">
                     <div>
@@ -208,7 +208,7 @@
                     width: 1.3rem;
                     padding: 5px 0;
                     margin-left: 0.16rem;
-                    margin-top: 0.1rem;
+                    margin-top: 10px;
                     text-align: center;
                     font-size: 12px;
                     border-radius: 5px;

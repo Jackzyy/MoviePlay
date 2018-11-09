@@ -1,15 +1,18 @@
 <template>
-    <div class="play">
+    <div>
         <div class="load" v-if="isShow"><van-loading color="#7D7D7D" /></div>
         <div v-else>
-            <div class="player-box">
-                <iframe :src="this.playUrl" frameborder="0" width="100%" height="100%"></iframe>
+            <div class="play">
+                <div class="player-box">
+                    <iframe :src="this.playUrl" frameborder="0" width="100%" height="100%"></iframe>
+                </div>
+                <div class="oth">
+                    <p class="title">正在观看：{{ movieTitle }}</p>
+                </div>
             </div>
-            <div class="oth">
-                <p class="title">正在观看：{{ movieTitle }}</p>
-                <p class="bot">温馨提示:视频源于第三方网站，加载偏慢请稍等片刻</p>
-            </div>
+            <p class="footer">温馨提示:视频源于第三方网站，加载偏慢请稍等片刻</p>
         </div>
+        
     </div>
 </template>
 
@@ -48,14 +51,15 @@
     .play{
         width: 6.2rem;
         margin: auto;
-        margin-top: 0.1rem;
-        position: relative;
-        height: 90vh;
-        overflow: hidden;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        height: 82vh;
     }
     .player-box{
-        height: 3.5rem;
-        // height: 100%;
+        // height: 3.5rem;
+        width: 96vw;
+        height: 34vh;
+        margin: auto;
         border-radius: 5px;
         overflow: hidden;
     }
@@ -65,13 +69,12 @@
             border-left: 5px solid #94c8d7;
             padding: 0 5px;
         }
-        .bot{
-            width: 6.4rem;
-            font-size: 12px;
-            color: #7d7d7d;
-            text-align: center;
-            position: absolute;
-            bottom: 0;
-        }
+    }
+    .footer{
+        width: 6.4rem;
+        height: 20px;
+        font-size: 12px;
+        color: #7d7d7d;
+        text-align: center;
     }
 </style>
